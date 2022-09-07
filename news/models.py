@@ -27,6 +27,9 @@ class Author(models.Model):
 class Category(models.Model):
     category_name = models.CharField(max_length=64, unique=True)
 
+    def __str__(self):
+        return self.category_name.title()
+
 
 class Post(models.Model):
     post_datetime = models.DateTimeField(auto_now_add=True)
@@ -51,6 +54,9 @@ class Post(models.Model):
 
     def preview(self):
         return '{}...'.format(self.post_value[:124])
+
+    def __str__(self):
+        return f'{self.post_name.title()}: {self.preview()}'
 
 
 class PostCategory(models.Model):
